@@ -17,3 +17,5 @@ def get_age_by_name(name: str) -> int:
 @app.get("/health")
 def health():
     return {"status": "ok"}
+
+app.mount("/mcp", mcp.sse_app())
