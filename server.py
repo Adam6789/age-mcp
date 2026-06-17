@@ -7,10 +7,10 @@ mcp = FastMCP("age-server")
 
 @mcp.tool()
 def get_age_by_name(name: str) -> int:
-    if name == "Philipp":
-        return 5
-    elif name == "Teresa":
-        return 11
+    if name == "Hans":
+        return 52
+    elif name == "Peter":
+        return 28
     return -1
 
 
