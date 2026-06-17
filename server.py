@@ -1,7 +1,6 @@
-from fastapi import FastAPI
+import os
 from mcp.server.fastmcp import FastMCP
 
-app = FastAPI()
 mcp = FastMCP("age-server")
 
 
@@ -14,8 +13,10 @@ def get_age_by_name(name: str) -> int:
     return -1
 
 
-@app.get("/health")
-def health():
-    return {"status": "ok"}
-
-app.mount("/mcp", mcp.sse_app())
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 10000))
+    mcp.run(
+        transport="sse",
+        host="0.0.0.0",
+        port=port
+    )
