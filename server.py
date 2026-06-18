@@ -4,7 +4,7 @@ import uvicorn
 import os
 
 print("🚀 MCP server starting...")
-mcp = FastMCP("age-server")
+mcp = FastMCP("age-server", streamable_http_path="/mcp")
 app = mcp.streamable_http_app()
 
 
