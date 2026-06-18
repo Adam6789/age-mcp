@@ -6,6 +6,10 @@ import os
 print("🚀 MCP server starting...")
 mcp = FastMCP("age-server", streamable_http_path="/mcp")
 app = mcp.streamable_http_app()
+app = TrustedHostMiddleware(
+    app,
+    allowed_hosts=["*"]
+)
 
 
 @mcp.tool()
@@ -20,5 +24,6 @@ if __name__ == "__main__":
         port=port,
         proxy_headers=True,
         forwarded_allow_ips="*",
+        http="h11"
     )
 
